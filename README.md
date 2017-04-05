@@ -11,7 +11,10 @@
 ## 设计说明
 
 ### App 容器
+用以初始化通信层，并装载SDK
+
 ### 通信层
+用以完成SDK间的通信
 
 #### 通信协议
 `scheme://sdk-name/bnsiness.action?queryString`
@@ -22,5 +25,5 @@
 - action： 描述执行的动作
 - queryString： 业务需要的参数
 
-
 ### SDK
+有基础库和业务单元组成，用以实现具体的服务。
