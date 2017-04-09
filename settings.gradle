@@ -1,1 +1,1 @@
-include ':sample', ':bootvessel', ':bootbus', ':buildsrc'
+include ':sample', ':container', ':eventbus', ':buildsrc', ':annotation'
