@@ -12,17 +12,52 @@ import rx.Subscriber;
 
 public class MiddlewareManages {
 
-    static List<Options> arr = new ArrayList<>();
+    static List<IMiddeware> arr = new ArrayList<>();
 
 
     public static void start(){
 
-        arr.add(new Options(1));
-        arr.add(new Options(2));
-        arr.add(new Options(3));
-        arr.add(new Options(4));
-        arr.add(new Options(5));
-        arr.add(new Options(6));
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("1");
+            }
+        });
+
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("2");
+            }
+        });
+
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("3");
+            }
+        });
+
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("4");
+            }
+        });
+
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("5");
+            }
+        });
+
+        arr.add(new BaseMiddleware() {
+            @Override
+            public void call() {
+                System.out.println("6");
+            }
+        });
 
 
         int i = arr.size();
@@ -37,8 +72,8 @@ public class MiddlewareManages {
             }
         });
 
-        for (Options option : arr){
-            prev = option.apply(prev);
+        for (IMiddeware middeware : arr){
+            prev = middeware.apply(prev);
         }
 
         prev.subscribe(new Subscriber() {

@@ -5,23 +5,18 @@ import rx.Subscriber;
 import rx.functions.Func1;
 
 /**
- * Created by Guang on 2017/4/24.
+ * Created by Guang on 2017/4/25.
  */
 
-public class Options {
-
-    final int id;
-
-    public Options(int id){
-        this.id = id;
-    }
+public abstract class BaseMiddleware implements IMiddeware {
 
     public Observable apply(final Observable observable) {
         return Observable.create(new Observable.OnSubscribe<Boolean>() {
 
             @Override
             public void call(Subscriber<? super Boolean> subscriber) {
-                System.out.println("s123" + id);
+
+                BaseMiddleware.this.call();
 
                 subscriber.onNext(true);
                 subscriber.onCompleted();
