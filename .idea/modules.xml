@@ -4,10 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android-boot.iml" filepath="$PROJECT_DIR$/android-boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/boot/boot.iml" filepath="$PROJECT_DIR$/boot/boot.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildsrc/buildsrc.iml" filepath="$PROJECT_DIR$/buildsrc/buildsrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/container/container.iml" filepath="$PROJECT_DIR$/container/container.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smoketower/smoketower.iml" filepath="$PROJECT_DIR$/smoketower/smoketower.iml" />
     </modules>
   </component>
 </project>

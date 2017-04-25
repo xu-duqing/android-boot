@@ -9,10 +9,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/annotation" />
+            <option value="$PROJECT_DIR$/boot" />
             <option value="$PROJECT_DIR$/buildsrc" />
             <option value="$PROJECT_DIR$/container" />
             <option value="$PROJECT_DIR$/sample" />
-            <option value="$PROJECT_DIR$/smoketower" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

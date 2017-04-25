@@ -18,7 +18,7 @@ public class MiddlewareManages {
 
         List<IMiddeware> arr = new ArrayList<>();
 
-        int k = 1000;
+        int k = 3000;  // TODO: 2017/4/25 因为部分机型的原因，最大极限值为30
         while (k--  > 0){
             arr.add(new BaseMiddleware() {
                 @Override

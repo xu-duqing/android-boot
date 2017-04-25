@@ -1,1 +1,1 @@
-include ':sample', ':container', ':smoketower', ':buildsrc', ':annotation'
+include ':sample', ':container', ':boot', ':buildsrc', ':annotation'
