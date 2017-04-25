@@ -12,55 +12,21 @@ import rx.Subscriber;
 
 public class MiddlewareManages {
 
-    static List<IMiddeware> arr = new ArrayList<>();
 
 
     public static void start(){
 
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("1");
-            }
-        });
+        List<IMiddeware> arr = new ArrayList<>();
 
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("2");
-            }
-        });
-
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("3");
-            }
-        });
-
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("4");
-            }
-        });
-
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("5");
-            }
-        });
-
-        arr.add(new BaseMiddleware() {
-            @Override
-            public void call() {
-                System.out.println("6");
-            }
-        });
-
-
-        int i = arr.size();
+        int k = 1000;
+        while (k--  > 0){
+            arr.add(new BaseMiddleware() {
+                @Override
+                public void call() {
+                    System.out.println("1");
+                }
+            });
+        }
 
         Observable prev = Observable.create(new Observable.OnSubscribe<Boolean>() {
             @Override
@@ -90,6 +56,7 @@ public class MiddlewareManages {
             @Override
             public void onNext(Object o) {
                 System.out.println("end");
+                System.out.println("stack length: " + Thread.currentThread().getStackTrace().length);
             }
         });
     }
