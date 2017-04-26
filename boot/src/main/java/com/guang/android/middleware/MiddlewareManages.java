@@ -1,7 +1,6 @@
 package com.guang.android.middleware;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.guang.android.vo.Bundle;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -12,37 +11,34 @@ import rx.Subscriber;
 
 public class MiddlewareManages {
 
+    private IMiddleware[] middlewareList;
+    private static MiddlewareManages mSafe = new MiddlewareManages();
 
+    public  void apply(IMiddleware...middewares){
+        middlewareList = middewares;
+    }
 
-    public static void start(){
+    public static MiddlewareManages getInstance() {
+        return mSafe;
+    }
 
-        List<IMiddeware> arr = new ArrayList<>();
+    public void start(final Bundle bundle){
 
-        int k = 3000;  // TODO: 2017/4/25 因为部分机型的原因，最大极限值为30
-        while (k--  > 0){
-            arr.add(new BaseMiddleware() {
-                @Override
-                public void call() {
-                    System.out.println("1");
-                }
-            });
-        }
-
-        Observable prev = Observable.create(new Observable.OnSubscribe<Boolean>() {
+        Observable observable = Observable.create(new Observable.OnSubscribe<Bundle>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
+            public void call(Subscriber<? super Bundle> subscriber) {
                 System.out.println("第一个中间件");
 
-                subscriber.onNext(true);
+                subscriber.onNext(bundle);
                 subscriber.onCompleted();
             }
         });
 
-        for (IMiddeware middeware : arr){
-            prev = middeware.apply(prev);
+        for (IMiddleware middleware : middlewareList){
+            observable= middleware.apply(observable, bundle);
         }
 
-        prev.subscribe(new Subscriber() {
+        observable.subscribe(new Subscriber<Bundle>() {
             @Override
             public void onCompleted() {
                 System.out.println("onCompleted");
@@ -54,7 +50,7 @@ public class MiddlewareManages {
             }
 
             @Override
-            public void onNext(Object o) {
+            public void onNext(Bundle bundle) {
                 System.out.println("end");
                 System.out.println("stack length: " + Thread.currentThread().getStackTrace().length);
             }

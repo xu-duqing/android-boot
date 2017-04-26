@@ -1,6 +1,5 @@
 package com.guang.android.controller;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +8,12 @@ import java.util.Map;
  */
 
 public class RouterManager {
+    
+    private static RouterManager mSafe = new RouterManager();
+
+    public static RouterManager getInstance() {
+        return mSafe;
+    }
 
     private Map<String,ServiceObject> mServiceMap = new HashMap<>();
 
@@ -16,8 +21,7 @@ public class RouterManager {
         mServiceMap.put(host, service);
     }
 
-    public void invoke(URI url){
-        ServiceObject service = mServiceMap.get(url.getHost());
-        service.invoke(url.getPath());
+    public ServiceObject getService(String url){
+        return mServiceMap.get(url);
     }
 }

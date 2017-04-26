@@ -17,6 +17,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        MiddlewareManages.start();
+        MiddlewareManages.getInstance().start(new com.guang.android.vo.Bundle());
     }
 }
