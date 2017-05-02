@@ -27,7 +27,7 @@ public class MiddlewareManagesTest {
             middlewareList[k] = new BaseMiddleware() {
                 @Override
                 public void call(Bundle bundle) {
-                    System.out.println(bundle.setBody(bundle.getBody() + "*").toString());
+                    System.out.println(bundle.setBody(bundle.getBody() + "*").toString() + "： 开始执行");
                 }
             };
         }

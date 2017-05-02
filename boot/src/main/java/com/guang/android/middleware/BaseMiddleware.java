@@ -12,21 +12,20 @@ import rx.functions.Func1;
 
 public abstract class BaseMiddleware implements IMiddleware {
 
-    public Observable apply(final Observable observable,final Bundle bundle) {
-        return Observable.create(new Observable.OnSubscribe<Boolean>() {
-
+    public Observable apply(final Observable observable) {
+        return observable.flatMap(new Func1<Bundle,Observable>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
+            public Observable call(final Bundle bundle) {
+                return Observable.create(new Observable.OnSubscribe<Bundle>() {
+                    @Override
+                    public void call(Subscriber<? super Bundle> subscriber) {
 
-                BaseMiddleware.this.call(bundle);
+                        BaseMiddleware.this.call(bundle);
 
-                subscriber.onNext(true);
-                subscriber.onCompleted();
-            }
-        }).flatMap(new Func1<Boolean, Observable<?>>() {
-            @Override
-            public Observable<?> call(Boolean aBoolean) {
-                return observable;
+                        subscriber.onNext(bundle);
+                        subscriber.onCompleted();
+                    }
+                });
             }
         });
     }

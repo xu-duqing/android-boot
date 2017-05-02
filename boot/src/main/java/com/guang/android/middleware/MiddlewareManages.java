@@ -35,10 +35,11 @@ public class MiddlewareManages {
         });
 
         for (IMiddleware middleware : middlewareList){
-            observable= middleware.apply(observable, bundle);
+            observable= middleware.apply(observable);
         }
 
         observable.subscribe(new Subscriber<Bundle>() {
+
             @Override
             public void onCompleted() {
                 System.out.println("onCompleted");
@@ -46,11 +47,12 @@ public class MiddlewareManages {
 
             @Override
             public void onError(Throwable e) {
-                System.out.println("onError" + e.getMessage());
+                e.printStackTrace();
             }
 
             @Override
             public void onNext(Bundle bundle) {
+                System.out.println(bundle.setBody(bundle.getBody() + "*").toString() + "： 执行完毕");
                 System.out.println("end");
                 System.out.println("stack length: " + Thread.currentThread().getStackTrace().length);
             }

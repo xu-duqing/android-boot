@@ -13,5 +13,5 @@ public interface IMiddleware {
 
     public void call(Bundle bundle);
 
-    public Observable apply(Observable observable,Bundle bundle);
+    public Observable apply(Observable observable);
 }
